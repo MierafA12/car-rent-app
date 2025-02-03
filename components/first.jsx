@@ -5,7 +5,7 @@ export default function IndexPage({ navigation }) {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Image style={styles.car} source={require('../assets/car1.png')} />
+        <Image style={styles.car} source={require('../assets/yellow.png')} />
         <View style={styles.all}>
           <Text style={styles.textone}>Rent Your Dream Car</Text>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
