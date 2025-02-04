@@ -28,8 +28,8 @@ const cars = [
     image: require('../assets/th.jpg'),
   },
   {
-    id: 1,
-    name: ' vitz',
+    id: 4,
+    name: 'Vitz',
     description: 'A reliable and fuel.',
     price: '800birr/day',
     image: require('../assets/gg.jpg'),
@@ -49,10 +49,13 @@ const Home = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Icon name="arrow-back" style={styles.backIcon} />
+          
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => setMenuVisible(true)}>
           <Icon name="menu" style={styles.menuIcon} />
         </TouchableOpacity>
-        <Text style={styles.headerTitle}>Car Rentals</Text>
       </View>
 
       <Modal visible={menuVisible} animationType="slide" transparent>
@@ -61,7 +64,7 @@ const Home = () => {
             <Icon name="close" style={styles.closeIcon} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Home')}>
-            <Text style={styles.menuText}>setting</Text>
+            <Text style={styles.menuText}>Setting</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('About')}>
             <Text style={styles.menuText}>About</Text>
@@ -120,6 +123,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 15,
     backgroundColor: '#ECAE36',
+    justifyContent:'space-between',
+    marginTop: 40,
+  },
+  backIcon: {
+    fontSize: 30,
+    color: 'white',
+    marginRight: 10,
   },
   menuIcon: {
     fontSize: 30,

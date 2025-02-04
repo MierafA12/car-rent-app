@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   car: {
     width: '100%',
-    marginTop: 4,
+    marginTop: 100,
     height: 300,
     marginBottom: 20,
     borderRadius: 10,

@@ -18,8 +18,8 @@ const App = () => {
     <FavoritesProvider>
     <NavigationContainer>
       <Stack.Navigator 
-      ><Stack.Screen name="First" component={First} /> 
-        <Stack.Screen name="Home" component={Home} />
+      ><Stack.Screen name="First" component={First} options={{headerShown:false}} /> 
+        <Stack.Screen name="Home" component={Home} options={{headerShown:false}} />
         <Stack.Screen name="CarDetails" component={CarDetails} />
         <Stack.Screen name="Form" component={Form} />
         <Stack.Screen name="Favorite" component={Favorite} />
