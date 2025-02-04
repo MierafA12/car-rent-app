@@ -10,7 +10,7 @@ const footer = () => {
     <View style={styles.footer}>
         <Icon style={styles.home} name = 'home' onPress={()=> navigation.navigate("Home")}/>
         <Icon style={styles.home} name = 'heart' onPress={()=> navigation.navigate("Favorite")}/>
-        <Icon style={styles.home} name = 'person'onPress={()=> navigation.navigate("Contact")} />
+        <Icon style={styles.home} name = 'person'onPress={()=> navigation.navigate("Account")} />
     </View>
     
   )

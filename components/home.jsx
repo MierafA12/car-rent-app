@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, TextInput, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, TextInput, Alert, Modal } from 'react-native';
 import Footer from './footer';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -33,14 +33,38 @@ const Home = () => {
   const navigation = useNavigation();
   const { favorites, toggleFavorite } = useContext(FavoritesContext);
   const [searchQuery, setSearchQuery] = useState('');
+  const [menuVisible, setMenuVisible] = useState(false);
 
-  // Filter cars by name only
   const filteredCars = cars.filter((car) =>
     car.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => setMenuVisible(true)}>
+          <Icon name="menu" style={styles.menuIcon} />
+        </TouchableOpacity>
+        <Text style={styles.headerTitle}>Car Rentals</Text>
+      </View>
+
+      <Modal visible={menuVisible} animationType="slide" transparent>
+        <View style={styles.menuContainer}>
+          <TouchableOpacity style={styles.closeButton} onPress={() => setMenuVisible(false)}>
+            <Icon name="close" style={styles.closeIcon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Home')}>
+            <Text style={styles.menuText}>setting</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('About')}>
+            <Text style={styles.menuText}>About</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Contact')}>
+            <Text style={styles.menuText}>Contact</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+
       <View style={styles.searchContainer}>
         <TextInput
           style={styles.input}
@@ -53,7 +77,7 @@ const Home = () => {
 
       <ScrollView style={styles.content}>
         <Text style={styles.contentText}>Most Popular</Text>
-        {filteredCars.map((car) => ( // Use filteredCars instead of cars
+        {filteredCars.map((car) => (
           <View key={car.id} style={styles.card}>
             <TouchableOpacity onPress={() => navigation.navigate('CarDetails', { car })}>
               <Image style={styles.image} source={car.image} />
@@ -62,21 +86,18 @@ const Home = () => {
               <Text style={styles.carName}>{car.name}</Text>
               <Text style={styles.carPrice}>{car.price}</Text>
             </View>
-
             <TouchableOpacity
-  onPress={() => {
-    toggleFavorite(car);
-    Alert.alert("Favorite Updated", `${car.name} has been ${favorites.some(fav => fav.id === car.id) ? "removed from" : "added to"} favorites.`);
-  }}
-  style={styles.favoriteButton}
->
-  <Icon name={favorites.some(fav => fav.id === car.id) ? 'heart' : 'heart-outline'} style={styles.favoriteIcon} />
-</TouchableOpacity>
-
+              onPress={() => {
+                toggleFavorite(car);
+                Alert.alert("Favorite Updated", `${car.name} has been ${favorites.some(fav => fav.id === car.id) ? "removed from" : "added to"} favorites.`);
+              }}
+              style={styles.favoriteButton}
+            >
+              <Icon name={favorites.some(fav => fav.id === car.id) ? 'heart' : 'heart-outline'} style={styles.favoriteIcon} />
+            </TouchableOpacity>
           </View>
         ))}
       </ScrollView>
-
       <Footer />
     </View>
   );
@@ -87,35 +108,38 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#F8F8F8',
   },
-  text: {
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 15,
+    backgroundColor: '#ECAE36',
+  },
+  menuIcon: {
+    fontSize: 30,
+    color: 'white',
+  },
+  headerTitle: {
     fontSize: 20,
-    color: 'white',
     fontWeight: 'bold',
-  },
-  button2: {
-    padding: 10,
-  },
-  home: {
     color: 'white',
+    marginLeft: 20,
   },
   searchContainer: {
     margin: 10,
-    display: 'flex',
     flexDirection: 'row',
   },
   searchIcon: {
-    fontSize: 40,
+    fontSize: 30,
     color: '#ECAE36',
     marginLeft: 10,
   },
   input: {
     height: 40,
-    width: 350,
+    width: 300,
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 5,
     paddingHorizontal: 10,
-    marginBottom: 20,
     backgroundColor: '#fff',
   },
   content: {
@@ -160,6 +184,30 @@ const styles = StyleSheet.create({
   favoriteIcon: {
     fontSize: 25,
     color: 'red',
+  },
+  menuContainer: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: 250,
+    backgroundColor: '#fff',
+    padding: 20,
+    elevation: 5,
+  },
+  closeButton: {
+    alignSelf: 'flex-end',
+  },
+  closeIcon: {
+    fontSize: 30,
+    color: '#333',
+  },
+  menuItem: {
+    paddingVertical: 15,
+  },
+  menuText: {
+    fontSize: 18,
+    color: '#333',
   },
 });
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Alert, Linking } from "react-native";
+import {  Text, TextInput, TouchableOpacity, ScrollView, Alert, Linking } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const Booking = () => {
@@ -18,9 +18,9 @@ const Booking = () => {
     let paymentURL = "";
 
     if (method === "Telebirr") {
-      paymentURL = "https://telebirr.com/pay"; // Replace with actual Telebirr API or deep link
+      paymentURL = "https://telebirr.com/pay";
     } else if (method === "CBE Birr") {
-      paymentURL = "https://cbebirr.com/pay"; // Replace with actual CBE Birr API or deep link
+      paymentURL = "https://cbebirr.com/pay"; 
     }
 
     // Open the payment URL
@@ -116,7 +116,7 @@ const styles = {
     backgroundColor: "#ECAE36",
   },
   confirmButton: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#ECAE36",
     padding: 15,
     borderRadius: 8,
     alignItems: "center",
@@ -124,3 +124,4 @@ const styles = {
   },
 };
 
+export default Booking;
