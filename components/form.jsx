@@ -1,8 +1,9 @@
 import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
 import React, { useState } from 'react'; 
+import { useNavigation } from '@react-navigation/native';
 
 const Form = () => {
- 
+    const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -44,7 +45,7 @@ const Form = () => {
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
           <Text>you dont have an account .sign up...</Text>
-      <TouchableOpacity style={styles.button} onPress={handleSignup}>
+      <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('Booking')}>
         <Text style={styles.buttonText}>Signup</Text>
       </TouchableOpacity>
     </View>

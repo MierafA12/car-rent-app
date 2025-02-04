@@ -7,6 +7,7 @@ import Form from './components/form';
 import Favorite from './components/Favorite';
 import Contact from './components/contact';
 import { FavoritesProvider } from './components/FavoriteContext';
+import Booking from './components/booking';
 
 const Stack = createStackNavigator();
 
@@ -21,6 +22,7 @@ const App = () => {
         <Stack.Screen name="Form" component={Form} />
         <Stack.Screen name="Favorite" component={Favorite} />
         <Stack.Screen name="Contact" component={Contact} />
+        <Stack.Screen name="Booking" component={Booking} />
       </Stack.Navigator>
     </NavigationContainer>
     </FavoritesProvider>
