@@ -10,22 +10,29 @@ const cars = [
     id: 1,
     name: 'Toyota Corolla',
     description: 'A reliable and fuel-efficient sedan perfect for city driving.',
-    price: '50birr/day',
+    price: '500birr/day',
     image: require('../assets/car22.jpeg'),
   },
   {
     id: 2,
     name: 'Honda Civic',
     description: 'A stylish and comfortable car with great mileage.',
-    price: '55birr/day',
+    price: '557birr/day',
     image: require('../assets/cccc.png'),
   },
   {
     id: 3,
     name: 'Ford Mustang',
     description: 'A powerful sports car for an exhilarating driving experience.',
-    price: '100birr/day',
+    price: '1000birr/day',
     image: require('../assets/th.jpg'),
+  },
+  {
+    id: 1,
+    name: ' vitz',
+    description: 'A reliable and fuel.',
+    price: '800birr/day',
+    image: require('../assets/gg.jpg'),
   },
 ];
 
