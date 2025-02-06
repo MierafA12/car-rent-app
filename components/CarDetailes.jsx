@@ -15,7 +15,7 @@ const CarDetails = ({ route }) => {
         <Text style={styles.carName}>{car.name}</Text>
         <Text style={styles.carPrice}>{car.price}</Text>
         <Text style={styles.carDescription}>{car.description}</Text>
-       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Form')}>
+       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Booking')}>
                   <Text style={styles.buttonText}>rent now</Text>
                 </TouchableOpacity>
                 </View>

@@ -8,7 +8,7 @@ export default function IndexPage({ navigation }) {
         <Image style={styles.car} source={require('../assets/yellow.png')} />
         <View style={styles.all}>
           <Text style={styles.textone}>Rent Your Dream Car</Text>
-          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
+          <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home1')}>
             <Text style={styles.buttonText}>Get Started</Text>
           </TouchableOpacity>
         </View>

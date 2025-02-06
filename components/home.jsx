@@ -66,8 +66,8 @@ const Home = () => {
           <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Home')}>
             <Text style={styles.menuText}>Setting</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('About')}>
-            <Text style={styles.menuText}>About</Text>
+          <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Home1')}>
+            <Text style={styles.menuText}>Logout</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.menuItem} onPress={() => navigation.navigate('Contact')}>
             <Text style={styles.menuText}>Contact</Text>
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 15,
-    backgroundColor: '#ECAE36',
+    backgroundColor: '#003049',
     justifyContent:'space-between',
     marginTop: 40,
   },

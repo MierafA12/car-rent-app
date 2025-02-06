@@ -1,23 +1,46 @@
-import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
-import React, { useState } from 'react'; 
+import { StyleSheet, Text, View, TouchableOpacity, TextInput, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react'; 
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Form = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
 
-  const handleLogin = () => {
-    console.log('Email:', email);
-    console.log('Password:', password);
-    
+  const checkLoginStatus = async () => {
+    const storedEmail = await AsyncStorage.getItem('userEmail');
+    if (storedEmail) {
+      Alert.alert('Welcome Back!', `Logged in as ${storedEmail}`);
+    }
   };
 
-
-  const handleSignup = () => {
-    console.log('Navigate to signup screen');
+  const handleLogin = async () => {
+    const storedEmail = await AsyncStorage.getItem('userEmail');
+    const storedPassword = await AsyncStorage.getItem('userPassword');
     
+    if (email === storedEmail && password === storedPassword) {
+      Alert.alert('Success', 'Login successful!');
+      navigation.navigate('Home');
+    } else {
+      Alert.alert('Error', 'Invalid email or password');
+    }
+  };
+
+  const handleSignup = async () => {
+    if (!email || !password) {
+      Alert.alert('Error', 'Please enter email and password');
+      return;
+    }
+    
+    await AsyncStorage.setItem('userEmail', email);
+    await AsyncStorage.setItem('userPassword', password);
+    Alert.alert('Success', 'Account created successfully!');
+    navigation.navigate('Account');
   };
 
   return (
@@ -38,14 +61,15 @@ const Form = () => {
         placeholder="Password"
         value={password}
         onChangeText={setPassword} 
-        secureTextEntry />
-
+        secureTextEntry
+      />
 
       <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-          <Text>you dont have an account .sign up...</Text>
-      <TouchableOpacity style={styles.button}   onPress={() => navigation.navigate('Booking')}>
+      
+      <Text>Don't have an account? Sign up...</Text>
+      <TouchableOpacity style={styles.button} onPress={handleSignup}>
         <Text style={styles.buttonText}>Signup</Text>
       </TouchableOpacity>
     </View>
