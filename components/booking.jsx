@@ -19,23 +19,39 @@ const Booking = () => {
       Alert.alert("Error", "Please fill in all fields and select a payment method.");
       return;
     }
-
-    const currentDate = new Date().toISOString().split("T")[0]; // Get today's date
-
-    const newBooking = { location, pickupDate, dropoffDate, paymentMethod, bookingDate: currentDate };
-
+  
+    const loggedInUser = await AsyncStorage.getItem("loggedInUser");
+  
+    if (!loggedInUser) {
+      Alert.alert("Error", "No logged-in user found. Please log in first.");
+      return;
+    }
+  
+    const user = JSON.parse(loggedInUser);
+  
+    const newBooking = {
+      email: user.email, // Associate with the logged-in user
+      location,
+      pickupDate,
+      dropoffDate,
+      paymentMethod,
+      bookingDate: new Date().toISOString().split("T")[0],
+    };
+  
     try {
       const existingBookings = await AsyncStorage.getItem("bookingHistory");
       const bookings = existingBookings ? JSON.parse(existingBookings) : [];
-
+  
       bookings.push(newBooking);
       await AsyncStorage.setItem("bookingHistory", JSON.stringify(bookings));
-
-      Alert.alert("Success", "Booking confirmed! Your booking history is updated.");
+  
+      Alert.alert("Success", "Booking confirmed!");
     } catch (error) {
       Alert.alert("Error", "Could not save booking.");
     }
   };
+  
+  
 
   return (
     <ScrollView contentContainerStyle={{ padding: 20 }}>

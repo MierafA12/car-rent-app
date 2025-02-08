@@ -11,6 +11,7 @@ import Booking from './components/booking';
 import About from './components/About';
 import Account from './components/Account';
 import Home1 from './components/home1';
+import Signup from './components/Sigup';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ const App = () => {
         <Stack.Screen name="About" component={About} />
         <Stack.Screen name="Account" component={Account} />
         <Stack.Screen name="Home1" component={Home1} options={{headerShown:false}}/>
+        <Stack.Screen name="Signup" component={Signup} />
       </Stack.Navigator>
     </NavigationContainer>
     </FavoritesProvider>

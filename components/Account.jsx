@@ -11,14 +11,22 @@ const Account = () => {
 
   const fetchBookings = async () => {
     try {
+      const loggedInUser = await AsyncStorage.getItem("loggedInUser");
+      if (!loggedInUser) return;
+  
+      const user = JSON.parse(loggedInUser);
       const storedBookings = await AsyncStorage.getItem("bookingHistory");
-      if (storedBookings) {
-        setBookings(JSON.parse(storedBookings));
-      }
+      const allBookings = storedBookings ? JSON.parse(storedBookings) : [];
+  
+      // Filter bookings for the logged-in user
+      const userBookings = allBookings.filter(booking => booking.email === user.email);
+      setBookings(userBookings);
     } catch (error) {
       console.log("Error loading booking history:", error);
     }
   };
+  
+  
 
   const clearBookingHistory = async () => {
     try {

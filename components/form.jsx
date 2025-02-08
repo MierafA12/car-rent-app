@@ -13,35 +13,35 @@ const Form = () => {
   }, []);
 
   const checkLoginStatus = async () => {
-    const storedEmail = await AsyncStorage.getItem('userEmail');
-    if (storedEmail) {
-      Alert.alert('Welcome Back!', `Logged in as ${storedEmail}`);
+    const storedUser = await AsyncStorage.getItem('user');
+    if (storedUser) {
+      const userData = JSON.parse(storedUser);
+      Alert.alert('Welcome Back!', `Logged in as ${userData.email}`);
     }
   };
 
   const handleLogin = async () => {
-    const storedEmail = await AsyncStorage.getItem('userEmail');
-    const storedPassword = await AsyncStorage.getItem('userPassword');
-    
-    if (email === storedEmail && password === storedPassword) {
-      Alert.alert('Success', 'Login successful!');
+    const storedUser = await AsyncStorage.getItem('user');
+  
+    if (!storedUser) {
+      Alert.alert('Error', 'No user found. Please sign up first.');
+      return;
+    }
+  
+    const userData = JSON.parse(storedUser);
+  
+    if (email === userData.email && password === userData.password) {
+      Alert.alert('Success', `Welcome, ${userData.name}!`);
+      
+      // Store the logged-in user email
+      await AsyncStorage.setItem('loggedInUser', JSON.stringify({ email: userData.email }));
+  
       navigation.navigate('Home');
     } else {
       Alert.alert('Error', 'Invalid email or password');
     }
   };
-
-  const handleSignup = async () => {
-    if (!email || !password) {
-      Alert.alert('Error', 'Please enter email and password');
-      return;
-    }
-    
-    await AsyncStorage.setItem('userEmail', email);
-    await AsyncStorage.setItem('userPassword', password);
-    Alert.alert('Success', 'Account created successfully!');
-    navigation.navigate('Account');
-  };
+  
 
   return (
     <View style={styles.container}>
@@ -69,7 +69,7 @@ const Form = () => {
       </TouchableOpacity>
       
       <Text>Don't have an account? Sign up...</Text>
-      <TouchableOpacity style={styles.button} onPress={handleSignup}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Signup")}>
         <Text style={styles.buttonText}>Signup</Text>
       </TouchableOpacity>
     </View>

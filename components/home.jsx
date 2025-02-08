@@ -130,10 +130,11 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'white',
     marginRight: 10,
+    color:'#ECAE36',
   },
   menuIcon: {
     fontSize: 30,
-    color: 'white',
+    color:'#ECAE36',
   },
   headerTitle: {
     fontSize: 20,
