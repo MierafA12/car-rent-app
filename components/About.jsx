@@ -21,7 +21,6 @@ const About = () => {
           Thank you for choosing us. We look forward to serving you!
         </Text>
       </ScrollView>
-      <Footer />
     </View>
   );
 };

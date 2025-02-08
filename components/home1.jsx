@@ -79,7 +79,7 @@ const Home = () => {
       
       <ScrollView style={styles.content}>
         {filteredCars.map((car) => (
-          <TouchableOpacity onPress={() => navigation.navigate('CarDetails', { car })} style={styles.card}>
+          <TouchableOpacity  style={styles.card}>
             <Image style={styles.image} source={car.image} />
             <Text style={styles.carName}>{car.name}</Text>
             <Text style={styles.carPrice}>{car.price}</Text>
@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     backgroundColor: '#fff',
     marginBottom: 10,
+    marginTop: 20,
   },
   content: {
     flex: 1,
