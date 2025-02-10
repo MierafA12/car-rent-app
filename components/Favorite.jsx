@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
-import { FavoritesContext } from './FavoriteContext';
+import { FavoritesContext } from '../context/FavoriteContext';
 
 const Favorite = () => {
   const { favorites } = useContext(FavoritesContext);

@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, TextInput,
 import Footer from './footer';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { FavoritesContext } from './FavoriteContext';
+import { FavoritesContext } from '../context/FavoriteContext';
 
 const cars = [
   {

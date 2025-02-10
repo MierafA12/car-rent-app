@@ -6,7 +6,7 @@ import First from './components/first';
 import Form from './components/form';
 import Favorite from './components/Favorite';
 import Contact from './components/contact';
-import { FavoritesProvider } from './components/FavoriteContext';
+import { FavoritesProvider } from './context/FavoriteContext';
 import Booking from './components/booking';
 import About from './components/About';
 import Account from './components/Account';

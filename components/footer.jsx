@@ -2,7 +2,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native';
-import  * as Clipboard from 'expo-clipboard'
+
 
 const footer = () => {
   const navigation = useNavigation();
